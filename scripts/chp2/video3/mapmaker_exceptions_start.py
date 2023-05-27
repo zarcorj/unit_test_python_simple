@@ -10,7 +10,6 @@ class Point:
 
         if not (-90 <= latitude <= 90) or not (-180 <= longitude <= 180):
             raise ValueError("Invalid latitude, longitude combination.")
-
         self.latitude = latitude
         self.longitude = longitude
 
