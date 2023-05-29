@@ -1,14 +1,17 @@
+""" Module to read csv file and return a list of dictionaries"""
+
 import csv
 
 
 def csv_reader(file_location):
-    with open(file_location, mode='r') as csv_file:
+    """Read csv file and return a list of dictionaries"""
+    with open(file_location, mode="r") as csv_file:
         data = [line for line in csv.DictReader(csv_file)]
         for row in data:
             try:
-                row['Lat'] = float(row['Lat'])
-                row['Long'] = float(row['Long'])
-                row['Altitude'] = float(row['Altitude'])
+                row["Lat"] = float(row["Lat"])
+                row["Long"] = float(row["Long"])
+                row["Altitude"] = float(row["Altitude"])
             except Exception as exp:
                 raise ValueError(str(exp))
 
