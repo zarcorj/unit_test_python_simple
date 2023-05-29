@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from scripts import data_processor
+from scripts import data_processor, json_processor
 
 
 @pytest.fixture(scope="module")
@@ -23,7 +23,7 @@ def process_data(city_list_location):
                 if file_name_or_type != '.json':
                     data = data_processor.csv_reader(city_list_location + f)
                 else:
-                    data = data_processor.json_reader(city_list_location + f)
+                    data = json_processor.json_reader(city_list_location + f)
 
                 return data
     yield _specify_type
