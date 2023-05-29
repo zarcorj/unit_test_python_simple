@@ -1,11 +1,16 @@
+"""A module to track fitness activities"""
+
 from datetime import datetime
 
 class FitnessLog:
+    """A class to track fitness activities"""
     def __init__(self, activities=None):
+        """Initialize the class with a list of activities"""
         self._activities = activities if activities is not None else []
 
 
     def log_activity(self, kind, start_time, end_time):
+        """Add a new activity to the log"""
         if self.validate_entry(start_time, end_time) and not self.overlapping_entry(start_time, end_time):
             self._activities.append([kind, start_time, end_time])
         else:
@@ -14,6 +19,7 @@ class FitnessLog:
 
 
     def validate_entry(self, start_time, end_time):
+        """Validate that the start and end times are valid"""
         if start_time.year == end_time.year and \
                 start_time.month == end_time.month and \
                 start_time.day == end_time.day and \
@@ -24,6 +30,7 @@ class FitnessLog:
 
 
     def overlapping_entry(self, start_time, end_time):
+        """Validate that the start and end times are not overlapping"""
         if self._activities == []:
             return False
         else:
@@ -38,10 +45,12 @@ class FitnessLog:
 
 
     def delete_activity(self, kind, start_time, end_time):
+        """Delete an activity from the log"""
         for idx, activity in enumerate(self._activities):
             if activity[0] == kind and activity[1] == start_time and activity[2] == end_time:
                 del self._activities[idx]
 
 
     def get_activities(self):
+        """Return the list of activities"""
         return self._activities
